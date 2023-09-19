@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dip0kril72aq8"]
+
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_dwdaf"]
+[ext_resource type="Texture2D" uid="uid://dbq8gvnfk4jer" path="res://sprites/robot1_hold.png" id="1_rn7dj"]
+[ext_resource type="Texture2D" uid="uid://bi3q4xc0upnqo" path="res://textures/light.png" id="2_m2m7p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_podf5"]
+radius = 24.1868
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_dwdaf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rn7dj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(124, -1)
+rotation = -1.5708
+texture = ExtResource("2_m2m7p")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(8, -8, 114, -58, 113, 0, 114, 58, 8, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
+shape = SubResource("CircleShape2D_podf5")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

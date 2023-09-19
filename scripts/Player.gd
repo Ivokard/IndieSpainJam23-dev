@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 signal player_fired_bullet(bullet,position,direction)
 
@@ -7,7 +8,8 @@ var move_speed = 200
 
 @export var bullet = preload("res://scenes/bullet.tscn")
 
-@onready var end_gun = $Marker2D
+@onready var end_gun = $EndGun
+@onready var gun_direction = $GunDirection
 
 
 func _ready() -> void:
@@ -27,7 +29,7 @@ func _physics_process(delta: float) -> void:
 
 func fire():
 	var bullet_instance = bullet.instantiate()
-	var target = get_global_mouse_position()
-	var direction_to_mouse = end_gun.global_position.direction_to(target).normalized()
-	emit_signal("player_fired_bullet",bullet_instance,end_gun.global_position,direction_to_mouse)
+	var direction = (gun_direction.global_position - end_gun.global_position).normalized()
+
+	emit_signal("player_fired_bullet",bullet_instance,end_gun.global_position,direction)
 

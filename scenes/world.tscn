@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://7aym8ybdfo33"]
+[gd_scene load_steps=8 format=3 uid="uid://7aym8ybdfo33"]
 
 [ext_resource type="Script" path="res://scripts/level_night_world.gd" id="1_7a8p5"]
 [ext_resource type="PackedScene" uid="uid://b60osnk5iikrg" path="res://scenes/Player.tscn" id="1_ytxbo"]
 [ext_resource type="Script" path="res://scripts/BulletManager.gd" id="3_l1g3y"]
+[ext_resource type="Texture2D" uid="uid://cc8u71mh6haoq" path="res://textures/white_square.png" id="4_lwr0c"]
+[ext_resource type="PackedScene" uid="uid://c564uvw0b3gx1" path="res://scenes/tilemap.tscn" id="5_f4dpo"]
+[ext_resource type="PackedScene" uid="uid://dip0kril72aq8" path="res://scenes/Enemy.tscn" id="6_3n0lq"]
+
+[sub_resource type="Curve2D" id="Curve2D_g6g1a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -492, -464, 0, 0, 0, 0, 219, -459, 0, 0, 0, 0, 311, 345, 0, 0, 0, 0, -475, 330, 0, 0, 0, 0, -492, -464)
+}
+point_count = 5
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_7a8p5")
@@ -12,3 +21,34 @@ position = Vector2(527, 301)
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("3_l1g3y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(592, 436)
+scale = Vector2(41.8548, 38.1108)
+texture = ExtResource("4_lwr0c")
+
+[node name="Tilemap" parent="." instance=ExtResource("5_f4dpo")]
+z_index = -1
+position = Vector2(572, 417)
+scale = Vector2(3.64, 3.88)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+enabled = false
+energy = 0.0
+shadow_enabled = true
+shadow_filter = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.219608, 0.2, 0.207843, 1)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(695, 413)
+curve = SubResource("Curve2D_g6g1a")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-492, -464)
+rotation = 0.00703223
+
+[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("6_3n0lq")]
