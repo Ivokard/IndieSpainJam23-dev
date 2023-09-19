@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b60osnk5iikrg"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_a3yjq"]
+[ext_resource type="Texture2D" uid="uid://ckpajaen528rt" path="res://sprites/robot1_gun.png" id="2_33o53"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j33wt"]
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hd2kq"]
+radius = 29.0172
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(462, 267)
+script = ExtResource("1_a3yjq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j33wt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_33o53")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hd2kq")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(33, 8)

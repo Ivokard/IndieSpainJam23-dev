@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://7aym8ybdfo33"]
+
+[ext_resource type="Script" path="res://scripts/level_night_world.gd" id="1_7a8p5"]
+[ext_resource type="PackedScene" uid="uid://b60osnk5iikrg" path="res://scenes/Player.tscn" id="1_ytxbo"]
+[ext_resource type="Script" path="res://scripts/BulletManager.gd" id="3_l1g3y"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_7a8p5")
+
+[node name="Player" parent="." instance=ExtResource("1_ytxbo")]
+position = Vector2(527, 301)
+
+[node name="BulletManager" type="Node2D" parent="."]
+script = ExtResource("3_l1g3y")
