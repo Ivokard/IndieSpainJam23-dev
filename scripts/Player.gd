@@ -3,6 +3,9 @@ class_name Player
 
 signal player_fired_bullet(bullet,position,direction)
 
+signal weapon_switched(prev_index,new_index)
+
+var pistol_is_equipped = false
 
 var move_speed = 200
 
@@ -28,8 +31,17 @@ func _physics_process(delta: float) -> void:
 		fire()
 
 func fire():
-	var bullet_instance = bullet.instantiate()
-	var direction = (gun_direction.global_position - end_gun.global_position).normalized()
+	if pistol_is_equipped == true:
+		var bullet_instance = bullet.instantiate()
+		var direction = (gun_direction.global_position - end_gun.global_position).normalized()
 
-	emit_signal("player_fired_bullet",bullet_instance,end_gun.global_position,direction)
+		emit_signal("player_fired_bullet",bullet_instance,end_gun.global_position,direction)
 
+
+
+func _input(event):
+	if event.is_action_pressed("PickUp"):
+		if $PickUpArea2D.items_in_range.size() > 0:
+			var pickup_item = $PickUpArea2D.items_in_range.values()[0]
+			pickup_item.pick_up_item(self)
+			$PickUpArea2D.items_in_range.erase(pickup_item)

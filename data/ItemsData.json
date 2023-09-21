@@ -1,0 +1,21 @@
+{
+    "Green Key":
+    {
+        "ItemCategory": "Usable",
+        "StackSize": 1,
+        "Description": "Open doors"
+    },
+
+    "Smoke":
+    {
+        "ItemCategory": "Usable",
+        "StackSize": 5,
+        "Description": "Open doors"
+    },
+    "Pistol":
+    {
+        "ItemCategory": "Usable",
+        "StackSize": 1,
+        "Description": "Open doors"
+    }
+}

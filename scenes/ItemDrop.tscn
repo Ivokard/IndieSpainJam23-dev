@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://crbpgaedyx8mt"]
+
+[ext_resource type="Texture2D" uid="uid://1v1botfh71os" path="res://items_icons/Green Key.png" id="1_0vo7e"]
+[ext_resource type="Script" path="res://scenes/ItemDrop.gd" id="1_3f3hd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b425b"]
+
+[node name="ItemDrop" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_3f3hd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_0vo7e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_b425b")

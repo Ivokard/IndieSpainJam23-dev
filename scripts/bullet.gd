@@ -26,10 +26,12 @@ func set_direction(direction: Vector2):
 	self.direction = direction
 	rotation += direction.angle()
 
-
-func _on_area_entered(area: Area2D) -> void:
-	queue_free() # Replace with function body.
-
-
 func _on_kill_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if(body.is_in_group("Enemy")):
+		body.queue_free()
+		queue_free()
+		

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b60osnk5iikrg"]
+[gd_scene load_steps=7 format=3 uid="uid://b60osnk5iikrg"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_a3yjq"]
 [ext_resource type="Texture2D" uid="uid://ckpajaen528rt" path="res://sprites/robot1_gun.png" id="2_33o53"]
-[ext_resource type="Texture2D" uid="uid://cqo0o6ctlbrbe" path="res://textures/LightPoint.png" id="2_otaci"]
+[ext_resource type="Script" path="res://scenes/PickUpArea2D.gd" id="3_0iqa3"]
+[ext_resource type="Texture2D" uid="uid://cpvvfp4w3tpx5" path="res://textures/lightfix.png" id="3_uqkvu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j33wt"]
 radius = 25.0
@@ -12,22 +13,23 @@ radius = 29.0172
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(462, 267)
+collision_mask = 2
 script = ExtResource("1_a3yjq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_j33wt")
-
-[node name="PointLight2D" type="PointLight2D" parent="CollisionShape2D"]
-color = Color(0.443137, 0.74902, 0, 1)
-texture = ExtResource("2_otaci")
-texture_scale = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_33o53")
 
-[node name="Area2D" type="Area2D" parent="." groups=["Player"]]
+[node name="PickUpArea2D" type="Area2D" parent="." groups=["Player"]]
+scale = Vector2(4, 4)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_0iqa3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["Player"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea2D" groups=["Player"]]
 shape = SubResource("CircleShape2D_hd2kq")
 
 [node name="EndGun" type="Marker2D" parent="."]
@@ -39,3 +41,13 @@ position = Vector2(38, 8)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(38, 8)
 position_smoothing_enabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(69, 1)
+rotation = -1.5708
+color = Color(0.709804, 0.466667, 0, 1)
+texture = ExtResource("3_uqkvu")
+texture_scale = 0.4
+
+[connection signal="body_entered" from="PickUpArea2D" to="PickUpArea2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="PickUpArea2D" to="PickUpArea2D" method="_on_area_2d_body_exited"]

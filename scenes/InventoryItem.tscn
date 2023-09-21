@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddjj6238107wv"]
+
+[ext_resource type="Texture2D" uid="uid://1v1botfh71os" path="res://items_icons/Green Key.png" id="1_2x132"]
+[ext_resource type="Script" path="res://scripts/InventoryItem.gd" id="2_e8cne"]
+
+[node name="InventoryItem" type="TextureRect"]
+texture = ExtResource("1_2x132")
+stretch_mode = 5
+script = ExtResource("2_e8cne")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+border_color = Color(0, 0, 0, 1)
+editor_only = false
