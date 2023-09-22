@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy7snx0sepo6y"
-path="res://.godot/imported/robot1_reload.png-e1f485f325ae35c1a9c626260ac23441.ctex"
+uid="uid://g00ty06xhp8a"
+path="res://.godot/imported/Aiming_mouse.png-b1a0703c4badd0aff026fda6c5248db6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/robot1_reload.png"
-dest_files=["res://.godot/imported/robot1_reload.png-e1f485f325ae35c1a9c626260ac23441.ctex"]
+source_file="res://textures/Aiming_mouse.png"
+dest_files=["res://.godot/imported/Aiming_mouse.png-b1a0703c4badd0aff026fda6c5248db6.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

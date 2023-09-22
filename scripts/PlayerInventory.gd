@@ -1,14 +1,22 @@
 extends Node
 
+signal active_item_updated
+
 const SlotClass = preload("res://scripts/Slot.gd")
 const ItemClass = preload("res://scripts/Item.gd")
 
 const NUM_INVENTORY_SLOTS = 4
+const NUM_HOTBAR_SLOTS = 3
+
+
+
+var active_item_slot = 0
 
 var inventory = {
-	3:["Pistol",1],
-	1:["Pistol",1],
-	2:["Smoke",3]
+}
+
+var hotbar = {
+
 }
 
 func add_item(item_name, item_quantity):
@@ -33,7 +41,7 @@ func add_item(item_name, item_quantity):
 			return
 				
 func update_slot_visual(slot_index, item_name, new_quantity):
-	var slot = get_tree().root.get_node("/root/world/CanvasLayer/Inventory/GridContainer/Slot" + str(slot_index + 1))
+	var slot = get_tree().root.get_node("/root/GameManager/CanvasLayer/Inventory/GridContainer/Slot" + str(slot_index + 1))
 	if slot.item != null:
 		slot.item.set_item(item_name,new_quantity)
 	else:
@@ -48,3 +56,16 @@ func remove_item(slot: SlotClass):
 	
 func add_item_quantity(slot : SlotClass, quantity_to_add: int):
 	inventory[slot.slot_index][1] += quantity_to_add
+
+func active_item_scroll_up() -> void:
+	active_item_slot = (active_item_slot + 1) % NUM_HOTBAR_SLOTS # 2+1 = 3 % 3 == 0
+	emit_signal("active_item_updated")
+
+func active_item_scroll_down() -> void:
+	if active_item_slot == 0:
+		active_item_slot = NUM_HOTBAR_SLOTS -1
+	else:
+		active_item_slot -= 1 
+	emit_signal("active_item_updated")	
+	
+	

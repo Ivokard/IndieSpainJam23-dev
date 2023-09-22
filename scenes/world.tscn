@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://7aym8ybdfo33"]
+[gd_scene load_steps=16 format=3 uid="uid://cwj60jfrfx4te"]
 
-[ext_resource type="Script" path="res://scripts/level_night_world.gd" id="1_7a8p5"]
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_3pqum"]
 [ext_resource type="PackedScene" uid="uid://b60osnk5iikrg" path="res://scenes/Player.tscn" id="1_ytxbo"]
 [ext_resource type="Script" path="res://scripts/BulletManager.gd" id="3_l1g3y"]
 [ext_resource type="Texture2D" uid="uid://cc8u71mh6haoq" path="res://textures/white_square.png" id="4_lwr0c"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://scripts/UI.gd" id="7_p63a1"]
 [ext_resource type="PackedScene" uid="uid://dr1sonm4rea57" path="res://scenes/hotbar.tscn" id="9_e8nrq"]
 [ext_resource type="PackedScene" uid="uid://crbpgaedyx8mt" path="res://scenes/ItemDrop.tscn" id="9_k7krk"]
+[ext_resource type="PackedScene" uid="uid://b2i7fqt1f4k78" path="res://scenes/PauseMenu.tscn" id="10_at054"]
+[ext_resource type="PackedScene" uid="uid://cal47diyln2ei" path="res://scenes/SmokeDrop.tscn" id="12_m6tao"]
+[ext_resource type="Script" path="res://scripts/SmokeManager.gd" id="13_ludsg"]
 
 [sub_resource type="GDScript" id="GDScript_bfcq0"]
 script/source = "extends CanvasModulate
@@ -39,8 +42,28 @@ _data = {
 }
 point_count = 5
 
-[node name="world" type="Node2D"]
-script = ExtResource("1_7a8p5")
+[node name="GameManager" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_3pqum")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("7_p63a1")
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("7_02fma")]
+visible = false
+light_mask = 2
+visibility_layer = 2
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("9_e8nrq")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("10_at054")]
+visible = false
+texture_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("1_ytxbo")]
 position = Vector2(527, 301)
@@ -79,19 +102,14 @@ rotation = 0.00703223
 
 [node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("6_3n0lq")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("7_p63a1")
-
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("7_02fma")]
-visible = false
-light_mask = 2
-visibility_layer = 2
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-
-[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("9_e8nrq")]
-
 [node name="ItemDrop" parent="." instance=ExtResource("9_k7krk")]
 position = Vector2(397, 386)
+
+[node name="ItemDrop2" parent="." instance=ExtResource("12_m6tao")]
+position = Vector2(698, 485)
+
+[node name="ItemDrop3" parent="." instance=ExtResource("12_m6tao")]
+position = Vector2(698, 485)
+
+[node name="SmokeManager" type="Node2D" parent="."]
+script = ExtResource("13_ludsg")

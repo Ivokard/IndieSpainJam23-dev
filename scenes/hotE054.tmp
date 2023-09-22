@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr1sonm4rea57"]
+[gd_scene load_steps=4 format=3 uid="uid://dr1sonm4rea57"]
 
 [ext_resource type="Texture2D" uid="uid://cc8u71mh6haoq" path="res://textures/white_square.png" id="1_654nd"]
 [ext_resource type="Script" path="res://scripts/hotbar.gd" id="1_utnel"]
 [ext_resource type="Script" path="res://scripts/Slot.gd" id="2_rnn11"]
-[ext_resource type="Theme" uid="uid://byrwfc8nd1j37" path="res://themes/panel_theme.tres" id="3_qdhvy"]
 
 [node name="Hotbar" type="Control"]
 layout_mode = 3
@@ -20,7 +19,7 @@ grow_vertical = 0
 script = ExtResource("1_utnel")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.152941, 0.168627, 0.345098, 0.188235)
+modulate = Color(0.662745, 0.690196, 1, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -54,17 +53,14 @@ columns = 3
 [node name="HotbarSlot1" type="Panel" parent="HotbarSlots"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-theme = ExtResource("3_qdhvy")
 script = ExtResource("2_rnn11")
 
 [node name="HotbarSlot2" type="Panel" parent="HotbarSlots"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-theme = ExtResource("3_qdhvy")
 script = ExtResource("2_rnn11")
 
 [node name="HotbarSlot3" type="Panel" parent="HotbarSlots"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-theme = ExtResource("3_qdhvy")
 script = ExtResource("2_rnn11")
