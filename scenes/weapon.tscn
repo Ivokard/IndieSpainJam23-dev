@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dphsp2uekqe0f"]
+
+[ext_resource type="Script" path="res://scenes/Weapon.gd" id="1_2qjv7"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_2qjv7")
+
+[node name="EndGun" type="Marker2D" parent="."]
+position = Vector2(33, 8)
+
+[node name="GunDirection" type="Marker2D" parent="."]
+position = Vector2(38, 8)
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

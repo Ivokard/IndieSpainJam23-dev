@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2i7fqt1f4k78"]
+[gd_scene load_steps=3 format=3 uid="uid://b2i7fqt1f4k78"]
 
-[ext_resource type="Script" path="res://scenes/PauseMenu.gd" id="1_bqm0a"]
+[ext_resource type="Script" path="res://scenes/UI/PauseMenu.gd" id="1_bqm0a"]
+[ext_resource type="FontFile" uid="uid://jl0sicvcm3ca" path="res://fonts/BebasNeue-Regular.ttf" id="2_m6srs"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -30,18 +31,22 @@ size_flags_vertical = 4
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "EMPEZAR PARTIDA"
 
 [node name="HowToButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "CONTROLER"
 
 [node name="SettingButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "OPCIONES"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "SALIR"
 
 [node name="Options" type="Control" parent="."]
@@ -69,10 +74,12 @@ grow_vertical = 2
 
 [node name="Video" type="Button" parent="Options/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "VIDEO"
 
 [node name="Audio" type="Button" parent="Options/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "AUDIO"
 
 [node name="BackOptions" type="Button" parent="Options"]
@@ -87,6 +94,7 @@ offset_top = -31.0
 offset_right = 34.5
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "VOLVER"
 
 [node name="Video" type="Control" parent="."]
@@ -118,16 +126,19 @@ layout_mode = 2
 [node name="Fullscreen" type="Label" parent="Video/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "Pantalla completa"
 
 [node name="Borderless" type="Label" parent="Video/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "Sin bordes"
 
 [node name="VSync" type="Label" parent="Video/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "VSync"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Video/VBoxContainer2"]
@@ -155,6 +166,7 @@ offset_top = -31.0
 offset_right = 34.5
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "VOLVER"
 
 [node name="Audio" type="Control" parent="."]
@@ -187,14 +199,17 @@ size_flags_vertical = 4
 
 [node name="Master" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "Master"
 
 [node name="Music" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "Música"
 
 [node name="SFX" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "Efectos
 "
 
@@ -226,6 +241,7 @@ offset_top = -31.0
 offset_right = 34.5
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_m6srs")
 text = "VOLVER"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

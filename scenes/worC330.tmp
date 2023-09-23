@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwj60jfrfx4te"]
+[gd_scene load_steps=15 format=3 uid="uid://cwj60jfrfx4te"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_3pqum"]
 [ext_resource type="PackedScene" uid="uid://b60osnk5iikrg" path="res://scenes/Player.tscn" id="1_ytxbo"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dip0kril72aq8" path="res://scenes/Enemy.tscn" id="6_3n0lq"]
 [ext_resource type="PackedScene" uid="uid://kmq6d5mc6qc8" path="res://scenes/UI/Inventory.tscn" id="7_02fma"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="7_p63a1"]
-[ext_resource type="PackedScene" uid="uid://dip0kril72aq8" path="res://scenes/enemy.tscn" id="7_wsu67"]
 [ext_resource type="PackedScene" uid="uid://dr1sonm4rea57" path="res://scenes/hotbar.tscn" id="9_e8nrq"]
 [ext_resource type="PackedScene" uid="uid://crbpgaedyx8mt" path="res://scenes/UI/ItemDrop.tscn" id="9_k7krk"]
 [ext_resource type="PackedScene" uid="uid://b2i7fqt1f4k78" path="res://scenes/UI/PauseMenu.tscn" id="10_at054"]
@@ -55,17 +54,8 @@ visible = false
 visible = false
 texture_filter = 1
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="Player" parent="." instance=ExtResource("1_ytxbo")]
 position = Vector2(527, 301)
-
-[node name="Enemy" parent="." instance=ExtResource("7_wsu67")]
-position = Vector2(833, 263)
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("3_l1g3y")

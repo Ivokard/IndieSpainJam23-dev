@@ -8,6 +8,7 @@ signal toggle_game
 @onready var smoke_manager = $SmokeManager
 @onready var player = $Player
 
+
 var game_paused: bool = false:
 	get: 
 		return game_paused
@@ -18,7 +19,7 @@ var game_paused: bool = false:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	player.connect("player_fired_bullet", Callable(bullet_manager, "handle_bullet_spawned"))
+	GlobalSignals.connect("bullet_fired", Callable(bullet_manager, "handle_bullet_spawned"))
 	player.connect("player_fired_smoke", Callable(smoke_manager, "handle_smoke_spawned"))
 	
 	

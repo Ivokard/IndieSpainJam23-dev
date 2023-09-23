@@ -1,7 +1,11 @@
 extends CharacterBody2D
 
-
+@onready var canvas = $"../../../CanvasModulate"
 @onready var pathfollow = get_parent()
+
+func _process(delta: float) -> void:
+	if(canvas.color.is_equal_approx("0f0c0e")):
+		visible = true
 
 
 

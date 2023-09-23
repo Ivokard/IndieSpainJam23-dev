@@ -1,6 +1,6 @@
 extends Panel
 
-var ItemClass = preload("res://scenes/Item.tscn")
+var ItemClass = preload("res://scenes/UI/Item.tscn")
 var item = null
 
 
