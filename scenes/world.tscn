@@ -1,18 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwj60jfrfx4te"]
+[gd_scene load_steps=22 format=3 uid="uid://cwj60jfrfx4te"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_3pqum"]
 [ext_resource type="PackedScene" uid="uid://b60osnk5iikrg" path="res://scenes/Player.tscn" id="1_ytxbo"]
 [ext_resource type="Script" path="res://scripts/BulletManager.gd" id="3_l1g3y"]
-[ext_resource type="Texture2D" uid="uid://cc8u71mh6haoq" path="res://textures/white_square.png" id="4_lwr0c"]
 [ext_resource type="PackedScene" uid="uid://c564uvw0b3gx1" path="res://scenes/tilemap.tscn" id="5_f4dpo"]
-[ext_resource type="PackedScene" uid="uid://dip0kril72aq8" path="res://scenes/Enemy.tscn" id="6_3n0lq"]
+[ext_resource type="PackedScene" uid="uid://dip0kril72aq8" path="res://scenes/enemy.tscn" id="6_3n0lq"]
+[ext_resource type="Texture2D" uid="uid://cnxh6r4hnsoin" path="res://sprites/red_person.png" id="6_oipg8"]
 [ext_resource type="PackedScene" uid="uid://kmq6d5mc6qc8" path="res://scenes/UI/Inventory.tscn" id="7_02fma"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="7_p63a1"]
-[ext_resource type="PackedScene" uid="uid://dip0kril72aq8" path="res://scenes/enemy.tscn" id="7_wsu67"]
 [ext_resource type="PackedScene" uid="uid://dr1sonm4rea57" path="res://scenes/hotbar.tscn" id="9_e8nrq"]
+[ext_resource type="AudioStream" uid="uid://b6b5cjrpmxpxd" path="res://music/level1.mp3" id="9_ision"]
 [ext_resource type="PackedScene" uid="uid://crbpgaedyx8mt" path="res://scenes/UI/ItemDrop.tscn" id="9_k7krk"]
 [ext_resource type="PackedScene" uid="uid://b2i7fqt1f4k78" path="res://scenes/UI/PauseMenu.tscn" id="10_at054"]
 [ext_resource type="Script" path="res://scripts/SmokeManager.gd" id="13_ludsg"]
+[ext_resource type="Texture2D" uid="uid://dj8u107qeysme" path="res://sprites/hitman2_stand.png" id="14_qq2ys"]
+[ext_resource type="PackedScene" uid="uid://y3t4fmgq5lej" path="res://scenes/WorldObjects/Door.tscn" id="15_btfrk"]
+[ext_resource type="Texture2D" uid="uid://cqo0o6ctlbrbe" path="res://textures/LightPoint.png" id="16_3sg6p"]
+[ext_resource type="PackedScene" uid="uid://b5vlo8ky3g8go" path="res://scenes/WorldObjects/BulletRemover.tscn" id="17_sibdh"]
 
 [sub_resource type="GDScript" id="GDScript_bfcq0"]
 script/source = "extends CanvasModulate
@@ -26,11 +30,46 @@ script/source = "extends CanvasModulate
 	
 "
 
-[sub_resource type="Curve2D" id="Curve2D_g6g1a"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -492, -464, 0, 0, 0, 0, 219, -459, 0, 0, 0, 0, 311, 345, 0, 0, 0, 0, -475, 330, 0, 0, 0, 0, -492, -464)
+[sub_resource type="GDScript" id="GDScript_yjg6x"]
+script/source = "extends PointLight2D
+
+
+
+
+@onready var animator = $AnimationPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	animator.play(\"light_animation\")
+
+"
+
+[sub_resource type="Animation" id="Animation_1cpbc"]
+resource_name = "light_animation"
+step = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0606459, 0.508493, 0.98433),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(309, 415), Vector2(1000, 415), Vector2(309, 415)]
 }
-point_count = 5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75d1f"]
+_data = {
+"light_animation": SubResource("Animation_1cpbc")
+}
 
 [node name="GameManager" type="Node2D"]
 process_mode = 1
@@ -61,43 +100,133 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Player" parent="." instance=ExtResource("1_ytxbo")]
-position = Vector2(527, 301)
+[node name="Objective" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
 
-[node name="Enemy" parent="." instance=ExtResource("7_wsu67")]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Objective"]
+visible = false
+position = Vector2(-22, 52)
+texture = ExtResource("6_oipg8")
+
+[node name="Player" parent="." instance=ExtResource("1_ytxbo")]
+position = Vector2(589, 746)
+
+[node name="Enemy" parent="." instance=ExtResource("6_3n0lq")]
 position = Vector2(833, 263)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_3n0lq")]
+position = Vector2(-256, -355)
+
+[node name="Enemy4" parent="." instance=ExtResource("6_3n0lq")]
+position = Vector2(-502, -351)
+rotation = 1.53073
+
+[node name="Enemy3" parent="." instance=ExtResource("6_3n0lq")]
+position = Vector2(-140, -367)
+rotation = 2.37843
 
 [node name="BulletManager" type="Node2D" parent="."]
 script = ExtResource("3_l1g3y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(592, 436)
-scale = Vector2(41.8548, 38.1108)
-texture = ExtResource("4_lwr0c")
-
 [node name="Tilemap" parent="." instance=ExtResource("5_f4dpo")]
 z_index = -1
-position = Vector2(572, 417)
-scale = Vector2(3.64, 3.88)
+position = Vector2(572, 327)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.0588235, 0.0470588, 0.054902, 1)
+position = Vector2(-20, -7)
+color = Color(0.160784, 0.160784, 0.141176, 1)
 script = SubResource("GDScript_bfcq0")
 
-[node name="Path2D" type="Path2D" parent="."]
-position = Vector2(695, 413)
-curve = SubResource("Curve2D_g6g1a")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-492, -464)
-rotation = 0.00703223
-
-[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource("6_3n0lq")]
-visible = false
-
 [node name="ItemDrop" parent="." instance=ExtResource("9_k7krk")]
-position = Vector2(397, 386)
+position = Vector2(1297, 384)
 
 [node name="SmokeManager" type="Node2D" parent="."]
 script = ExtResource("13_ludsg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ision")
+volume_db = -1.855
+autoplay = true
+bus = &"Music"
+
+[node name="Hitman2Stand" type="Sprite2D" parent="."]
+position = Vector2(601, 79)
+rotation = 1.58498
+texture = ExtResource("14_qq2ys")
+
+[node name="Door" parent="." instance=ExtResource("15_btfrk")]
+position = Vector2(147, 209)
+scale = Vector2(2.39999, 3.0319)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(409.771, 415)
+color = Color(1, 0.270588, 1, 1)
+energy = 0.58
+texture = ExtResource("16_3sg6p")
+script = SubResource("GDScript_yjg6x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+libraries = {
+"": SubResource("AnimationLibrary_75d1f")
+}
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(409.771, 415)
+color = Color(0.164706, 0.733333, 0.803922, 1)
+energy = 0.58
+texture = ExtResource("16_3sg6p")
+script = SubResource("GDScript_yjg6x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D2"]
+libraries = {
+"": SubResource("AnimationLibrary_75d1f")
+}
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(-38, -24)
+color = Color(1, 0.152941, 1, 1)
+energy = 0.35
+texture = ExtResource("16_3sg6p")
+texture_scale = 1.91
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(-281, -318)
+color = Color(1, 0.705882, 0.984314, 1)
+energy = 0.69
+texture = ExtResource("16_3sg6p")
+texture_scale = 1.91
+
+[node name="PointLight2D5" type="PointLight2D" parent="."]
+position = Vector2(1251, 398)
+color = Color(1, 0.705882, 0.984314, 1)
+energy = 0.69
+texture = ExtResource("16_3sg6p")
+texture_scale = 1.91
+
+[node name="PointLight2D6" type="PointLight2D" parent="."]
+position = Vector2(591, 5)
+color = Color(1, 0.705882, 0.984314, 1)
+energy = 0.69
+texture = ExtResource("16_3sg6p")
+texture_scale = 1.91
+
+[node name="PointLight2D7" type="PointLight2D" parent="."]
+position = Vector2(591, 383)
+energy = 0.34
+texture = ExtResource("16_3sg6p")
+texture_scale = 3.34
+
+[node name="BulletRemover" parent="." instance=ExtResource("17_sibdh")]
+position = Vector2(134, 458)
+scale = Vector2(1.85809, 19.2917)
+
+[node name="BulletRemover2" parent="." instance=ExtResource("17_sibdh")]
+position = Vector2(1067, 585)
+scale = Vector2(1.62555, 9.71352)

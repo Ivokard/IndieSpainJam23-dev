@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5vlo8ky3g8go"]
+
+[sub_resource type="GDScript" id="GDScript_0wmyg"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.get_name() == \"Bullet\":
+		area.queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6onqc"]
+
+[node name="BulletRemover" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = SubResource("GDScript_0wmyg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6onqc")
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

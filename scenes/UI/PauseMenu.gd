@@ -78,7 +78,7 @@ func _on_back_audio_pressed() -> void:
 	show_hide(options,audio)
 	
 func volume(bus_index,value):
-	AudioServer.set_bus_volume_db(bus_index,value)
+	AudioServer.set_bus_volume_db(bus_index,linear_to_db(value))
 
 func _on_master_value_changed(value: float) -> void:
 	volume(0,value) 

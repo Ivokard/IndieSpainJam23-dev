@@ -4,6 +4,8 @@ class_name bullet
 var bullet_speed = 20
 
 @onready var kill_timer = $KillTimer
+@onready var tilemap = "res://scenes/tilemap.tscn"
+
 
 var direction = Vector2.ZERO
 
@@ -16,12 +18,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if (direction != Vector2.ZERO):
 		var velocity = direction * bullet_speed
-		
 		global_position += velocity
-	
-	
-	
-	
+		
+
 func set_direction(direction: Vector2):
 	self.direction = direction
 	rotation += direction.angle()

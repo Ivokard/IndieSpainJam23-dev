@@ -13,7 +13,7 @@ radius = 162.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 17
-collision_mask = 16
+collision_mask = 17
 safe_margin = 0.001
 script = ExtResource("1_1bs7u")
 
@@ -27,6 +27,7 @@ texture = ExtResource("3_gdjfg")
 script = ExtResource("3_heq5o")
 
 [node name="Area2D" type="Area2D" parent="AI"]
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AI/Area2D"]
 shape = SubResource("CircleShape2D_qrhrb")

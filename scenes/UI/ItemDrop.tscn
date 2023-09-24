@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://crbpgaedyx8mt"]
+[gd_scene load_steps=5 format=3 uid="uid://crbpgaedyx8mt"]
 
 [ext_resource type="Texture2D" uid="uid://1v1botfh71os" path="res://items_icons/Green Key.png" id="1_0vo7e"]
 [ext_resource type="Script" path="res://scenes/UI/ItemDrop.gd" id="1_3f3hd"]
+[ext_resource type="Texture2D" uid="uid://cqo0o6ctlbrbe" path="res://textures/LightPoint.png" id="3_4olcn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b425b"]
 
@@ -17,3 +18,9 @@ texture = ExtResource("1_0vo7e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_b425b")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.729412, 0.729412, 0.729412, 1)
+energy = 0.5
+texture = ExtResource("3_4olcn")
+texture_scale = 0.35

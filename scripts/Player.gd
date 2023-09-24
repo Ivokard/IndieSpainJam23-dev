@@ -8,7 +8,7 @@ signal weapon_switched(prev_index,new_index)
 
 var is_aiming = false
 
-var move_speed = 200
+var move_speed = 300
 
 var health = 100
 
@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 
 	else:
 		Input.set_custom_mouse_cursor(default_mouse)
-		move_speed = 200
+		move_speed = 300
 		$Sprite2D.texture = load(player_sprite)
 	
 	if(Input.is_action_just_pressed("Grenade")):
@@ -89,5 +89,5 @@ func _input(event):
 			$PickUpArea2D.items_in_range.erase(pickup_item)
 
 func handle_hit():
-	
+	health -= 10
 	print(health)

@@ -8,7 +8,6 @@ signal toggle_game
 @onready var smoke_manager = $SmokeManager
 @onready var player = $Player
 
-
 var game_paused: bool = false:
 	get: 
 		return game_paused

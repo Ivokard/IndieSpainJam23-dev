@@ -7,29 +7,20 @@
 [ext_resource type="Texture2D" uid="uid://cqo0o6ctlbrbe" path="res://textures/LightPoint.png" id="5_yr3x8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j33wt"]
-radius = 25.0
+radius = 17.0294
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hd2kq"]
 radius = 29.0172
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(462, 267)
+collision_layer = 17
 collision_mask = 17
 script = ExtResource("1_a3yjq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.726499, 1)
 shape = SubResource("CircleShape2D_j33wt")
-
-[node name="PickUpArea2D" type="Area2D" parent="." groups=["Player"]]
-visible = false
-scale = Vector2(4, 4)
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("3_0iqa3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea2D" groups=["Player"]]
-visible = false
-shape = SubResource("CircleShape2D_hd2kq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(38, 8)
@@ -48,6 +39,15 @@ texture_scale = 0.4
 texture = ExtResource("3_eic68")
 
 [node name="Weapon" parent="." instance=ExtResource("5_4tqfq")]
+
+[node name="PickUpArea2D" type="Area2D" parent="." groups=["Player"]]
+scale = Vector2(4, 4)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_0iqa3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea2D" groups=["Player"]]
+shape = SubResource("CircleShape2D_hd2kq")
 
 [connection signal="body_entered" from="PickUpArea2D" to="PickUpArea2D" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="PickUpArea2D" to="PickUpArea2D" method="_on_area_2d_body_exited"]

@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://y3t4fmgq5lej"]
+[gd_scene load_steps=5 format=3 uid="uid://y3t4fmgq5lej"]
 
-[node name="Door" type="Node2D"]
+[ext_resource type="Script" path="res://scenes/WorldObjects/Door.gd" id="1_u5goh"]
+[ext_resource type="Texture2D" uid="uid://2vyyha6w1cgd" path="res://sprites/green_door.png" id="2_w3nqb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocs12"]
+size = Vector2(20, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6t3k"]
+size = Vector2(7, 32)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_u5goh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("2_w3nqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ocs12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_d6t3k")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
