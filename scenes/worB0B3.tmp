@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cwj60jfrfx4te"]
+[gd_scene load_steps=22 format=3 uid="uid://cwj60jfrfx4te"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_3pqum"]
 [ext_resource type="PackedScene" uid="uid://b60osnk5iikrg" path="res://scenes/Player.tscn" id="1_ytxbo"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cnxh6r4hnsoin" path="res://sprites/red_person.png" id="6_oipg8"]
 [ext_resource type="PackedScene" uid="uid://kmq6d5mc6qc8" path="res://scenes/UI/Inventory.tscn" id="7_02fma"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="7_p63a1"]
-[ext_resource type="PackedScene" uid="uid://bi6ftpry2myos" path="res://scenes/DeadMenu.tscn" id="7_rt2jq"]
-[ext_resource type="PackedScene" uid="uid://dimvx4m07gtlh" path="res://scenes/NextLevelMenu.tscn" id="8_2uwae"]
 [ext_resource type="PackedScene" uid="uid://dr1sonm4rea57" path="res://scenes/hotbar.tscn" id="9_e8nrq"]
 [ext_resource type="AudioStream" uid="uid://b6b5cjrpmxpxd" path="res://music/level1.mp3" id="9_ision"]
 [ext_resource type="PackedScene" uid="uid://crbpgaedyx8mt" path="res://scenes/UI/ItemDrop.tscn" id="9_k7krk"]
@@ -118,38 +116,25 @@ visible = false
 position = Vector2(-22, 52)
 texture = ExtResource("6_oipg8")
 
-[node name="Deadmenu" parent="CanvasLayer" instance=ExtResource("7_rt2jq")]
-visible = false
-
-[node name="NextLevel" parent="CanvasLayer" instance=ExtResource("8_2uwae")]
-visible = false
-
 [node name="Player" parent="." instance=ExtResource("1_ytxbo")]
+visible = false
 position = Vector2(589, 746)
 
 [node name="Enemy" parent="." instance=ExtResource("6_3n0lq")]
+visible = false
 position = Vector2(833, 263)
 
-[node name="Enemy5" parent="." instance=ExtResource("6_3n0lq")]
-position = Vector2(225, 447)
-rotation = 2.67571
-
-[node name="Enemy6" parent="." instance=ExtResource("6_3n0lq")]
-position = Vector2(225, 241)
-rotation = 0.707442
-
-[node name="Enemy7" parent="." instance=ExtResource("6_3n0lq")]
-position = Vector2(1131, 384)
-rotation = 3.07634
-
 [node name="Enemy2" parent="." instance=ExtResource("6_3n0lq")]
+visible = false
 position = Vector2(-256, -355)
 
 [node name="Enemy4" parent="." instance=ExtResource("6_3n0lq")]
+visible = false
 position = Vector2(-502, -351)
 rotation = 1.53073
 
 [node name="Enemy3" parent="." instance=ExtResource("6_3n0lq")]
+visible = false
 position = Vector2(-140, -367)
 rotation = 2.37843
 
@@ -191,10 +176,21 @@ position = Vector2(409.771, 415)
 color = Color(1, 0.270588, 1, 1)
 energy = 0.58
 texture = ExtResource("16_3sg6p")
-texture_scale = 4.57
 script = SubResource("GDScript_yjg6x")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+libraries = {
+"": SubResource("AnimationLibrary_75d1f")
+}
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(409.771, 415)
+color = Color(0.164706, 0.733333, 0.803922, 1)
+energy = 0.58
+texture = ExtResource("16_3sg6p")
+script = SubResource("GDScript_yjg6x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D2"]
 libraries = {
 "": SubResource("AnimationLibrary_75d1f")
 }
@@ -322,17 +318,3 @@ scale = Vector2(1.62555, 9.71352)
 [node name="BulletRemover3" parent="." instance=ExtResource("17_sibdh")]
 position = Vector2(1067, 203)
 scale = Vector2(1.62555, 9.71352)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3054.0
-offset_top = -2432.0
-offset_right = 3410.0
-offset_bottom = 3329.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0.207843, 0.207843, 0.207843, 1)

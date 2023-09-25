@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name  enemy
 
 @export var bullet = preload("res://scenes/bullet.tscn")
 const SPEED = 300.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dphsp2uekqe0f"]
 
 [ext_resource type="Script" path="res://scenes/Weapon.gd" id="1_2qjv7"]
-[ext_resource type="AudioStream" uid="uid://mhh0vdaox6m" path="res://sfx/shot.wav" id="2_ed28g"]
+[ext_resource type="AudioStream" uid="uid://binmoyrhd5acm" path="res://music/shoot_new.mp3" id="2_j38ij"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_2qjv7")
@@ -17,5 +17,6 @@ wait_time = 0.5
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ed28g")
+stream = ExtResource("2_j38ij")
+volume_db = -1.135
 bus = &"FX"

@@ -1,0 +1,368 @@
+[gd_scene load_steps=23 format=3 uid="uid://bhuy6h53en785"]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_qvika"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="2_nnc3p"]
+[ext_resource type="PackedScene" uid="uid://kmq6d5mc6qc8" path="res://scenes/UI/Inventory.tscn" id="3_beqbr"]
+[ext_resource type="PackedScene" uid="uid://dr1sonm4rea57" path="res://scenes/hotbar.tscn" id="4_hq5pj"]
+[ext_resource type="PackedScene" uid="uid://b2i7fqt1f4k78" path="res://scenes/UI/PauseMenu.tscn" id="5_ogib6"]
+[ext_resource type="Texture2D" uid="uid://cnxh6r4hnsoin" path="res://sprites/red_person.png" id="6_r7y8d"]
+[ext_resource type="PackedScene" uid="uid://bi6ftpry2myos" path="res://scenes/DeadMenu.tscn" id="7_tyud8"]
+[ext_resource type="PackedScene" uid="uid://dimvx4m07gtlh" path="res://scenes/NextLevelMenu.tscn" id="8_o6qf8"]
+[ext_resource type="PackedScene" uid="uid://b60osnk5iikrg" path="res://scenes/Player.tscn" id="9_513ll"]
+[ext_resource type="PackedScene" uid="uid://dip0kril72aq8" path="res://scenes/enemy.tscn" id="10_3dm3c"]
+[ext_resource type="Script" path="res://scripts/BulletManager.gd" id="11_3nlmu"]
+[ext_resource type="PackedScene" uid="uid://crbpgaedyx8mt" path="res://scenes/UI/ItemDrop.tscn" id="13_wclk4"]
+[ext_resource type="Script" path="res://scripts/SmokeManager.gd" id="14_wvhct"]
+[ext_resource type="AudioStream" uid="uid://bgaw2uhkolux3" path="res://music/level2.mp3" id="15_vcedu"]
+[ext_resource type="PackedScene" uid="uid://y3t4fmgq5lej" path="res://scenes/WorldObjects/Door.tscn" id="17_nq5vp"]
+[ext_resource type="Texture2D" uid="uid://cqo0o6ctlbrbe" path="res://textures/LightPoint.png" id="18_fg247"]
+[ext_resource type="PackedScene" uid="uid://b5vlo8ky3g8go" path="res://scenes/WorldObjects/BulletRemover.tscn" id="19_ahvjq"]
+[ext_resource type="PackedScene" uid="uid://dfcbunadp1xmu" path="res://scenes/tilemap2.tscn" id="19_l6cj7"]
+
+[sub_resource type="GDScript" id="GDScript_bfcq0"]
+script/source = "extends CanvasModulate
+
+
+
+	
+	
+
+	
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_yjg6x"]
+script/source = "extends PointLight2D
+
+
+
+
+@onready var animator = $AnimationPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	animator.play(\"light_animation\")
+
+"
+
+[sub_resource type="Animation" id="Animation_1cpbc"]
+resource_name = "light_animation"
+step = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0606459, 0.508493, 0.98433),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(309, 415), Vector2(1000, 415), Vector2(309, 415)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75d1f"]
+_data = {
+"light_animation": SubResource("Animation_1cpbc")
+}
+
+[node name="GameManager" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_qvika")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_nnc3p")
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_beqbr")]
+visible = false
+light_mask = 2
+visibility_layer = 2
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Hotbar" parent="CanvasLayer" instance=ExtResource("4_hq5pj")]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("5_ogib6")]
+visible = false
+texture_filter = 1
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Objective" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Objective"]
+visible = false
+position = Vector2(-22, 52)
+texture = ExtResource("6_r7y8d")
+
+[node name="Deadmenu" parent="CanvasLayer" instance=ExtResource("7_tyud8")]
+visible = false
+
+[node name="NextLevel" parent="CanvasLayer" instance=ExtResource("8_o6qf8")]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("9_513ll")]
+position = Vector2(589, 746)
+
+[node name="Enemy" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(631, -38)
+
+[node name="Enemy2" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(350, -443)
+rotation = 0.789416
+
+[node name="Enemy3" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(906, -408)
+rotation = 2.43274
+
+[node name="Enemy4" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(1481, 559)
+rotation = 3.12368
+
+[node name="BulletManager" type="Node2D" parent="."]
+script = ExtResource("11_3nlmu")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-20, -7)
+color = Color(0.160784, 0.160784, 0.141176, 1)
+script = SubResource("GDScript_bfcq0")
+
+[node name="ItemDrop" parent="." instance=ExtResource("13_wclk4")]
+position = Vector2(1856, 560)
+
+[node name="SmokeManager" type="Node2D" parent="."]
+script = ExtResource("14_wvhct")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_vcedu")
+volume_db = -1.855
+autoplay = true
+bus = &"Music"
+
+[node name="Door" parent="." instance=ExtResource("17_nq5vp")]
+position = Vector2(-337, 575)
+scale = Vector2(5.32549, 9.78486)
+
+[node name="Door2" parent="." instance=ExtResource("17_nq5vp")]
+position = Vector2(-1209, -154)
+rotation = 1.5768
+scale = Vector2(3.29627, 6.01445)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(409.771, 415)
+color = Color(1, 0.270588, 1, 1)
+energy = 0.58
+texture = ExtResource("18_fg247")
+texture_scale = 4.57
+script = SubResource("GDScript_yjg6x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PointLight2D"]
+libraries = {
+"": SubResource("AnimationLibrary_75d1f")
+}
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(-1847, 349)
+color = Color(0.729412, 0, 0.219608, 1)
+energy = 1.2
+texture = ExtResource("18_fg247")
+texture_scale = 7.71
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(-1500, -1486)
+color = Color(0.729412, 0, 0.219608, 1)
+energy = 1.2
+texture = ExtResource("18_fg247")
+texture_scale = 7.71
+
+[node name="PointLight2D5" type="PointLight2D" parent="."]
+position = Vector2(629, -504)
+color = Color(0.729412, 0, 0.219608, 1)
+energy = 0.5
+texture = ExtResource("18_fg247")
+texture_scale = 7.71
+
+[node name="PointLight2D6" type="PointLight2D" parent="."]
+position = Vector2(1867, 565)
+color = Color(0.729412, 0, 0.219608, 1)
+energy = 0.5
+texture = ExtResource("18_fg247")
+texture_scale = 7.71
+
+[node name="BulletRemover" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-38, 226)
+scale = Vector2(1.85809, 19.2917)
+
+[node name="BulletRemover2" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-52, 904)
+scale = Vector2(1.85809, 19.2917)
+
+[node name="BulletRemover3" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(1354, 234)
+scale = Vector2(1.85809, 19.2917)
+
+[node name="BulletRemover4" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(1360, 910)
+scale = Vector2(1.85809, 19.2917)
+
+[node name="BulletRemover11" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(188, -244)
+scale = Vector2(1.85809, 32.1317)
+
+[node name="BulletRemover17" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-1583, 279)
+scale = Vector2(-3.16868, 49.0582)
+
+[node name="BulletRemover18" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-839, -68.9999)
+scale = Vector2(-3.16868, 49.0582)
+
+[node name="BulletRemover19" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-1081, -510)
+scale = Vector2(-2.4435, 34.0191)
+
+[node name="BulletRemover20" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-1333, -745)
+scale = Vector2(3.34569, 60.9476)
+
+[node name="BulletRemover21" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-301, -830)
+scale = Vector2(3.34569, 60.9476)
+
+[node name="BulletRemover22" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-490, -786)
+rotation = 1.55962
+scale = Vector2(3.34569, 60.9476)
+
+[node name="BulletRemover23" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-473, -203)
+rotation = 1.55962
+scale = Vector2(3.34569, 60.9476)
+
+[node name="BulletRemover24" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-1910, -180)
+rotation = 1.55962
+scale = Vector2(3.34569, 60.9476)
+
+[node name="BulletRemover12" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(1113, -272)
+scale = Vector2(1.85809, 32.1317)
+
+[node name="BulletRemover13" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(1940, 595)
+scale = Vector2(1.85809, 32.1317)
+
+[node name="BulletRemover5" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(654, 1008)
+rotation = 1.55497
+scale = Vector2(3.79255, 79.5667)
+
+[node name="BulletRemover6" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-848, 766)
+rotation = 1.54609
+scale = Vector2(3.79255, 79.5667)
+
+[node name="BulletRemover7" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-933, -1336)
+rotation = 1.54609
+scale = Vector2(3.79255, 79.5667)
+
+[node name="BulletRemover8" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(665, -630)
+rotation = 1.54609
+scale = Vector2(3.79255, 79.5667)
+
+[node name="BulletRemover9" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(1693, 29.9999)
+rotation = 1.54609
+scale = Vector2(3.79255, 79.5667)
+
+[node name="BulletRemover10" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(196, 58)
+rotation = 1.54609
+scale = Vector2(1.71446, -21.6791)
+
+[node name="BulletRemover14" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(1705, 307)
+rotation = 1.54609
+scale = Vector2(1.71446, -21.6791)
+
+[node name="BulletRemover15" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(1657, 854)
+rotation = 1.54609
+scale = Vector2(1.71446, -21.6791)
+
+[node name="BulletRemover16" parent="." instance=ExtResource("19_ahvjq")]
+position = Vector2(-424, 400)
+rotation = 1.54609
+scale = Vector2(1.71446, -46.0322)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3398.0
+offset_top = -2499.0
+offset_right = 3066.0
+offset_bottom = 3262.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.207843, 0.207843, 0.207843, 1)
+
+[node name="Enemy5" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(-838, 566)
+
+[node name="Enemy6" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(-1270, 100)
+
+[node name="Enemy9" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(-1345, 536)
+
+[node name="Enemy7" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(-635, -1022)
+
+[node name="Enemy8" parent="." instance=ExtResource("10_3dm3c")]
+position = Vector2(-1155, -951)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3347.0
+offset_top = -2518.0
+offset_right = 3117.0
+offset_bottom = 3243.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.207843, 0.207843, 0.207843, 1)
+
+[node name="world2" parent="." instance=ExtResource("19_l6cj7")]
+z_index = -1
+position = Vector2(948, 680)
+scale = Vector2(1.5, 1.5)

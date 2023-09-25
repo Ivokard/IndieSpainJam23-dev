@@ -10,7 +10,7 @@ var is_aiming = false
 
 var move_speed = 300
 
-var health = 100
+@export var health = 100
 
 var aiming_mouse = load("res://textures/Aiming_mouse.png")
 var default_mouse = load("res://textures/cursor_pointerFlat.png")
@@ -33,6 +33,24 @@ var aimline_from
 var col = Color.RED
 var aimline_to
 
+const MAX_HEALTH = 100
+
+func _ready() -> void:
+	update_health_ui()
+	$ControlHealthbar/Healthbar.max_value = MAX_HEALTH
+
+func update_health_ui() -> void:
+	set_health_bar()
+	
+	
+func set_health_bar() -> void:
+	$ControlHealthbar/Healthbar.value = health
+	
+func _process(delta: float) -> void:
+	update_health_ui()
+
+
+
 	
 func _physics_process(delta: float) -> void:
 	
@@ -44,7 +62,6 @@ func _physics_process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 	
 	if(Input.is_action_pressed("Scope")):
-		Input.set_custom_mouse_cursor(aiming_mouse)
 		move_speed = 100
 		if(Input.is_action_just_pressed("Shoot")):
 			weapon.shoot()
@@ -52,24 +69,24 @@ func _physics_process(delta: float) -> void:
 		$Sprite2D.texture = load(player_shoot_sprite)
 
 	else:
-		Input.set_custom_mouse_cursor(default_mouse)
+
 		move_speed = 300
 		$Sprite2D.texture = load(player_sprite)
 	
-	if(Input.is_action_just_pressed("Grenade")):
-		var slot_indices: Array = PlayerInventory.inventory.keys()
+	#if(Input.is_action_just_pressed("Grenade")):
+	#	var slot_indices: Array = PlayerInventory.inventory.keys()
 
-		slot_indices.sort()
-		for item in slot_indices:		
-			var slot = get_tree().root.get_node("/root/GameManager/CanvasLayer/Inventory/GridContainer/Slot" + str(item + 1))
-			if PlayerInventory.inventory[item][0] == "Smoke":
-				print(PlayerInventory.inventory[item][1])
-				PlayerInventory.inventory[item][1] = PlayerInventory.inventory[item][1] -1
-				print(PlayerInventory.inventory[item][1])
-				if PlayerInventory.inventory[item][1] == 0:
-					print("Ya no tengo humo")
-					PlayerInventory.remove_item(slot)
-					slot.refresh_style()
+	#	slot_indices.sort()
+	#	for item in slot_indices:		
+	#		var slot = get_tree().root.get_node("/root/GameManager/CanvasLayer/Inventory/GridContainer/Slot" + str(item + 1))
+	#		if PlayerInventory.inventory[item][0] == "Smoke":
+	#			print(PlayerInventory.inventory[item][1])
+	#			PlayerInventory.inventory[item][1] = PlayerInventory.inventory[item][1] -1
+	#			print(PlayerInventory.inventory[item][1])
+	#			if PlayerInventory.inventory[item][1] == 0:
+	#		print("Ya no tengo humo")
+	#			PlayerInventory.remove_item(slot)
+	#		slot.refresh_style()
 #				smoke_trow()
 	
 

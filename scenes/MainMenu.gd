@@ -4,10 +4,12 @@ extends Control
 @onready var options = $Options
 @onready var video = $Video
 @onready var audio = $Audio
+@onready var level_selection = $LevelSelection
+@onready var how_to = $HowToPlay
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	get_tree().paused = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,7 +20,7 @@ func toggle():
 	get_tree().paused = visible
 
 func _on_play_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/world.tscn")
+	show_hide(level_selection,$VBoxContainer)
 
 
 func _on_quit_button_pressed() -> void:
@@ -88,3 +90,28 @@ func _on_music_value_changed(value: float) -> void:
 
 func _on_sfx_value_changed(value: float) -> void:
 	volume(2,value)  # Replace with function body.
+
+
+func _on_level_3_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/world3.tscn")
+
+
+func _on_level_2_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/world2.tscn")
+
+
+func _on_level_1_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/world.tscn")
+
+
+
+func _on_back_levels_pressed() -> void:
+	show_hide(menu,level_selection) # Replace with function body.
+
+
+func _on_back_howto_pressed() -> void:
+	show_hide(menu,how_to) # Replace with function body.
+
+
+func _on_how_to_button_pressed() -> void:
+	show_hide(how_to,menu) # Replace with function body.

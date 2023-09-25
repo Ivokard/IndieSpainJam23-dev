@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cygqpjcs5uvv3"]
+[gd_scene load_steps=5 format=3 uid="uid://cygqpjcs5uvv3"]
 
 [ext_resource type="Script" path="res://scenes/MainMenu.gd" id="1_j2phi"]
 [ext_resource type="FontFile" uid="uid://jl0sicvcm3ca" path="res://fonts/BebasNeue-Regular.ttf" id="2_vmu7d"]
 [ext_resource type="Texture2D" uid="uid://df56epk4yidwr" path="res://scenes/title.png" id="3_5x7u3"]
+[ext_resource type="AudioStream" uid="uid://bxl6um5d5ttau" path="res://music/menu.mp3" id="4_rg87b"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,43 +12,98 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 script = ExtResource("1_j2phi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -76.0
-offset_top = -68.0
-offset_right = 76.0
-offset_bottom = 68.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 272.0
+offset_bottom = 272.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 10
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "PLAY"
 
 [node name="HowToButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "HOW TO PLAY"
 
 [node name="SettingButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "SETTINGS"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "QUIT"
+
+[node name="LevelSelection" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 272.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level1" type="Button" parent="LevelSelection/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "LEVEL 1
+"
+
+[node name="Level2" type="Button" parent="LevelSelection/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "LEVEL 2
+"
+
+[node name="Level3" type="Button" parent="LevelSelection/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "LEVEL 3
+"
+
+[node name="BackLevels" type="Button" parent="LevelSelection"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "BACK"
 
 [node name="Options" type="Control" parent="."]
 visible = false
@@ -60,63 +116,56 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Options"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -33.0
-offset_right = 30.0
-offset_bottom = 33.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 272.0
+offset_bottom = 272.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Video" type="Button" parent="Options/VBoxContainer"]
+visible = false
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "VIDEO"
 
 [node name="Audio" type="Button" parent="Options/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "AUDIO"
 
-[node name="BackOptions" type="Button" parent="Options"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -34.5
-offset_top = -31.0
-offset_right = 34.5
-grow_horizontal = 2
-grow_vertical = 0
+[node name="BackOptions" type="Button" parent="Options/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "BACK"
 
 [node name="Video" type="Control" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer2" type="HBoxContainer" parent="Video"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -43.0
-offset_right = 84.0
-offset_bottom = 43.0
+offset_left = -45.0
+offset_top = -40.0
+offset_right = 45.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -124,18 +173,21 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Fullscreen" type="Label" parent="Video/VBoxContainer2/HBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "FULLSCREEN"
 
 [node name="Borderless" type="Label" parent="Video/VBoxContainer2/HBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "BORDERLESS"
 
 [node name="VSync" type="Label" parent="Video/VBoxContainer2/HBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_vmu7d")
@@ -143,71 +195,73 @@ text = "VSync"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Video/VBoxContainer2"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Fullscreen" type="CheckBox" parent="Video/VBoxContainer2/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 
 [node name="Borderless" type="CheckBox" parent="Video/VBoxContainer2/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="VSync" type="CheckBox" parent="Video/VBoxContainer2/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 
 [node name="BackVideo" type="Button" parent="Video"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -34.5
-offset_top = -31.0
-offset_right = 34.5
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_vmu7d")
-text = "BACK"
-
-[node name="Audio" type="Control" parent="."]
-visible = false
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "BACK"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Audio"]
+[node name="Audio" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -113.5
-offset_top = -43.0
-offset_right = 113.5
-offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.00433)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Audio"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -38.5
+offset_right = 26.0
+offset_bottom = 38.5
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Audio/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Master" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "MASTER"
 
 [node name="Music" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "MUSIC"
 
 [node name="SFX" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "FX
@@ -215,32 +269,38 @@ text = "FX
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Audio/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Master" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 6
+value = 100.0
 
 [node name="Music" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 size_flags_vertical = 6
+value = 100.0
 
 [node name="SFX" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 2
 size_flags_vertical = 6
+value = 100.0
 
 [node name="BackAudio" type="Button" parent="Audio"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -34.5
-offset_top = -31.0
-offset_right = 34.5
+offset_left = -16.0
+offset_top = 83.6379
+offset_right = 18.0
+offset_bottom = 111.638
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_vmu7d")
 text = "BACK"
 
@@ -256,12 +316,104 @@ position = Vector2(0, 200)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_5x7u3")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HowToPlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 56.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HowToPlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -83.0
+offset_right = 45.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HowToPlay/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "Movement  :  WASD"
+
+[node name="Label2" type="Label" parent="HowToPlay/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "Aim :  Right Click"
+
+[node name="Label3" type="Label" parent="HowToPlay/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "Shoot :  Left Click"
+
+[node name="Label4" type="Label" parent="HowToPlay/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "Pick item :  E"
+
+[node name="Label5" type="Label" parent="HowToPlay/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_vmu7d")
+text = "Pause :  ESC"
+
+[node name="BackHowto" type="Button" parent="HowToPlay/VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+layout_mode = 2
+text = "BACK"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_rg87b")
+volume_db = -15.226
+autoplay = true
+bus = &"Music"
+
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HowToButton" to="." method="_on_how_to_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="LevelSelection/VBoxContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="LevelSelection/VBoxContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="LevelSelection/VBoxContainer/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="pressed" from="LevelSelection/BackLevels" to="." method="_on_back_levels_pressed"]
 [connection signal="pressed" from="Options/VBoxContainer/Video" to="." method="_on_video_pressed"]
 [connection signal="pressed" from="Options/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="Options/BackOptions" to="." method="_on_back_options_pressed"]
+[connection signal="pressed" from="Options/VBoxContainer/BackOptions" to="." method="_on_back_options_pressed"]
 [connection signal="toggled" from="Video/VBoxContainer2/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="toggled" from="Video/VBoxContainer2/VBoxContainer/Borderless" to="." method="_on_borderless_toggled"]
 [connection signal="toggled" from="Video/VBoxContainer2/VBoxContainer/VSync" to="." method="_on_v_sync_toggled"]
@@ -270,3 +422,4 @@ texture = ExtResource("3_5x7u3")
 [connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/SFX" to="." method="_on_sfx_value_changed"]
 [connection signal="pressed" from="Audio/BackAudio" to="." method="_on_back_audio_pressed"]
+[connection signal="pressed" from="HowToPlay/VBoxContainer/BackHowto" to="." method="_on_back_howto_pressed"]

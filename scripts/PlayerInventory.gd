@@ -19,6 +19,9 @@ var hotbar = {
 
 }
 
+func _ready() -> void:
+	inventory = {}
+
 func add_item(item_name, item_quantity):
 	var slot_indices: Array = inventory.keys()
 	slot_indices.sort()

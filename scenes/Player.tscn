@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b60osnk5iikrg"]
+[gd_scene load_steps=9 format=3 uid="uid://b60osnk5iikrg"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_a3yjq"]
 [ext_resource type="Script" path="res://scenes/PickUpArea2D.gd" id="3_0iqa3"]
 [ext_resource type="Texture2D" uid="uid://bgr8co2mqlwp0" path="res://sprites/hitman1_stand.png" id="3_eic68"]
 [ext_resource type="PackedScene" uid="uid://dphsp2uekqe0f" path="res://scenes/weapon.tscn" id="5_4tqfq"]
 [ext_resource type="Texture2D" uid="uid://cqo0o6ctlbrbe" path="res://textures/LightPoint.png" id="5_yr3x8"]
+[ext_resource type="Script" path="res://scenes/Healthbar.gd" id="6_grqqn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j33wt"]
 radius = 17.0294
@@ -48,6 +49,39 @@ script = ExtResource("3_0iqa3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea2D" groups=["Player"]]
 shape = SubResource("CircleShape2D_hd2kq")
+
+[node name="ControlHealthbar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 63.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.31255, 0.360002)
+size_flags_horizontal = 0
+script = ExtResource("6_grqqn")
+
+[node name="Healthbar" type="ProgressBar" parent="ControlHealthbar"]
+modulate = Color(0.333333, 0.643137, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.284
+offset_top = -27.7776
+offset_right = 49.716
+offset_bottom = -0.777588
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 2.88)
+step = 1.0
+value = 100.0
+show_percentage = false
 
 [connection signal="body_entered" from="PickUpArea2D" to="PickUpArea2D" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="PickUpArea2D" to="PickUpArea2D" method="_on_area_2d_body_exited"]

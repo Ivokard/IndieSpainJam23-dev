@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://dimvx4m07gtlh"]
+
+[ext_resource type="FontFile" uid="uid://jl0sicvcm3ca" path="res://fonts/BebasNeue-Regular.ttf" id="1_ytocl"]
+
+[sub_resource type="GDScript" id="GDScript_xph6p"]
+script/source = "extends Control
+
+func _ready() -> void:
+	get_tree().paused = false
+
+func _on_play_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/world.tscn\")
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/MainMenu.tscn\")
+"
+
+[node name="NextLevel" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_xph6p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -14.0
+offset_right = 18.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+modulate = Color(0.933333, 0.411765, 0.658824, 1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ytocl")
+text = "MENU"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -67.5
+offset_top = -157.0
+offset_right = 67.5
+offset_bottom = -94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_ytocl")
+theme_override_font_sizes/font_size = 66
+text = "LEVEL COMPLETED"
+
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
